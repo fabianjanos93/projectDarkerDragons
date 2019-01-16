@@ -53,4 +53,17 @@ public class Fight {
                 turnSequence.add(party[i]);
         }
     }
+
+    private int partySize(GameCharacter[] party) {
+        int alive = 0;
+        for (int i = 0; i < 4; i++) {
+            if( party[i] != null)
+                alive++;
+        }
+        return alive;
+    }
+
+    public boolean isFightEnded() {
+        return partySize(playerParty) == 0 || partySize(enemyParty) == 0;
+    }
 }
