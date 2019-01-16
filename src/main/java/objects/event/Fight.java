@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Fight {
-    GameCharacter[] playerParty;
-    GameCharacter[] enemyParty;
+    private GameCharacter[] playerParty;
+    private GameCharacter[] enemyParty;
 
-    ArrayList<GameCharacter> turnSequence = new ArrayList<>();
-    int activeCharacterPointer = 1;
-    int turn = 1;
+    private ArrayList<GameCharacter> turnSequence = new ArrayList<>();
+    private int activeCharacterPointer = 1;
+    private int turn = 1;
 
     public Fight(GameCharacter[] playerParty, GameCharacter[] enemyParty) {
         this.playerParty = playerParty;
