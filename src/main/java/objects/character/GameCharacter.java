@@ -6,11 +6,11 @@ import objects.skill.Skill;
 import java.util.ArrayList;
 
 public abstract class GameCharacter {
-    private int level;
-    private int hp;
-    private int armor;
-    private int physicalDmg;
-    private int initiative;
+    protected int level;
+    protected int hp;
+    protected int armor;
+    protected int physicalDmg;
+    protected int initiative;
 
     public int getInitiative() {
         return initiative;
@@ -23,11 +23,6 @@ public abstract class GameCharacter {
     public Skill[] skills;
 
     public GameCharacter(int level, Skill[] skills) {
-        this.hp = 10 + 2*level;
-        this.armor = 3 + level/3;
-        this.physicalDmg = 4 + level;
-        this.level = level;
-        this.skills = skills;
     }
 
     public int getHp() {

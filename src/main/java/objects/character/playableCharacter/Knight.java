@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class Knight extends GameCharacter {
     public Knight(int level, Skill[] skills) {
         super(level, skills);
+        this.hp = 10 + 2*level;
+        this.armor = 3 + level/3;
+        this.physicalDmg = 4 + level;
     }
 
     private static ArrayList<Skill> possibleSkills = new ArrayList<Skill>();
