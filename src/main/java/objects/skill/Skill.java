@@ -11,7 +11,7 @@ public abstract class Skill {
 
     public static Skill getSkillByName(String skillName) {
         for(int i = 0; i < allSkills.size(); i++)
-            if (allSkills.get(i).getClass().getName().equals(skillName)) {
+            if (allSkills.get(i).getClass().getName().matches("(.*)."+skillName)) {
                 return allSkills.get(i);
         }
         return null;
