@@ -1,10 +1,12 @@
 package objects.main.gui;
 
+import objects.character.playableCharacter.Knight;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.EventListener;
+
+import static objects.main.gui.Gamewindow.dungeon;
 
 public class DungeonLabel extends JLabel {
 
@@ -21,6 +23,10 @@ public class DungeonLabel extends JLabel {
         setLayout(new GridBagLayout());
         setVisible(true);
         GridBagConstraints cns = new GridBagConstraints();
+        JLabel heroSide = new JLabel();
+        heroSide.setLayout(new GridLayout(2,2));
+        JLabel monsterSide = new JLabel();
+        monsterSide.setLayout(new GridLayout(2,2));
 
 
         JLabel topLabel = new JLabel();
@@ -46,8 +52,23 @@ public class DungeonLabel extends JLabel {
         cns.fill = GridBagConstraints.BOTH;
         midLabel.setBackground(Color.BLUE);
         midLabel.setOpaque(true);
-        midLabel.setLayout(new GridLayout(2,4));
+        midLabel.setLayout(new GridLayout(1,2));
+        midLabel.add(heroSide);
+        midLabel.add(monsterSide);
+
+       for (int i =0; i<4; i++){
+           JLabel character = new HeroLabel(Integer.toString(i));
+           character.setIcon(new ImageIcon(this.getClass().getResource(Knight.getSpirte())));
+           heroSide.add(character);
+       }
         add(midLabel,cns);
+
+        for (int i =0; i<4; i++){
+            JLabel character = new HeroLabel(Integer.toString(i));
+            monsterSide.add(character);
+        }
+        add(midLabel,cns);
+
 
 
         JLabel botLabel = new JLabel();
@@ -96,7 +117,7 @@ public class DungeonLabel extends JLabel {
 
 */
         setBounds(0,0, 800,600);
-        setIcon(Gamewindow.dungeonIcon);
+        setIcon(new ImageIcon(this.getClass().getResource(dungeon)));
 
 
     }

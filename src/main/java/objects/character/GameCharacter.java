@@ -3,7 +3,9 @@ package objects.character;
 import objects.skill.DamageSkill;
 import objects.skill.Skill;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class GameCharacter {
     protected int level;

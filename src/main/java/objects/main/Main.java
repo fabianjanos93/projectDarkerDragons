@@ -1,7 +1,6 @@
 package objects.main;
 
 import objects.main.gui.Gamewindow;
-import objects.main.gui.Mainwindow;
 
 import javax.swing.*;
 import java.awt.*;
