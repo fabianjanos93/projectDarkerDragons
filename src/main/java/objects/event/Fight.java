@@ -25,14 +25,12 @@ public class Fight {
     public GameCharacter nextTurn(int skillSlot, GameCharacter target){
         GameCharacter activeCharacter = (turnSequence.get(activeCharacterPointer));
         Skill chosenSkill = activeCharacter.getSkill(skillSlot);
-        activeCharacterPointer++;
         if (chosenSkill instanceof DamageSkill) {
             target.takeDamage(((DamageSkill) chosenSkill).attack(activeCharacter));
         }
-        if (activeCharacterPointer>turnSequence.size())
+        activeCharacterPointer++;
+        if (activeCharacterPointer >= turnSequence.size())
             activeCharacterPointer = 0;
-        else
-            activeCharacterPointer++;
         return turnSequence.get(activeCharacterPointer);
     }
 
@@ -46,7 +44,7 @@ public class Fight {
             }
             int j = 0;
             while(j < turnSequence.size()) {
-                if(party[i].getInitiative() > turnSequence.get(j).getInitiative()) {
+                if(party[i].getInitiative() >= turnSequence.get(j).getInitiative()) {
                     turnSequence.add(j,party[i]);
                     break;
                 }
