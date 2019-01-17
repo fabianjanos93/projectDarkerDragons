@@ -1,5 +1,10 @@
 package objects.main;
 
+import objects.main.gui.Mainwindow;
+
+import javax.swing.*;
+import java.awt.*;
+
 import objects.Dungeon;
 import objects.character.GameCharacter;
 import objects.character.enemy.Rat;
@@ -12,6 +17,13 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("jej");
+
+        EventQueue.invokeLater(()->{
+            Mainwindow mainScreen = new Mainwindow();
+            mainScreen.setVisible(true);
+        });
+
         init();
         Skill[] knightSkills = new Skill[4];
         knightSkills[1] = Skill.getSkillByName("Bite");
