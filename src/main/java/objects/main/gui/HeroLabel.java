@@ -16,8 +16,7 @@ public class HeroLabel extends JLabel {
     }
 
     public void init(String number){
-        setOpaque(true);
-        setBorder(BorderFactory.createLineBorder(Color.BLUE,5));
+        setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
         setBackground(Color.YELLOW);
 
     }

@@ -1,5 +1,6 @@
 package objects.main.gui;
 
+import objects.character.enemy.Rat;
 import objects.character.playableCharacter.Knight;
 
 import javax.swing.*;
@@ -37,7 +38,6 @@ public class DungeonLabel extends JLabel {
         cns.gridwidth=2;
         cns.fill = GridBagConstraints.BOTH;
         topLabel.setBackground(Color.WHITE);
-        topLabel.setOpaque(true);
         topLabel.addMouseListener(new MouseAdapter() {
 
         });
@@ -51,7 +51,6 @@ public class DungeonLabel extends JLabel {
         cns.insets = new Insets(3,15,3,15);
         cns.fill = GridBagConstraints.BOTH;
         midLabel.setBackground(Color.BLUE);
-        midLabel.setOpaque(true);
         midLabel.setLayout(new GridLayout(1,2));
         midLabel.add(heroSide);
         midLabel.add(monsterSide);
@@ -66,6 +65,7 @@ public class DungeonLabel extends JLabel {
         for (int i =0; i<4; i++){
             JLabel character = new HeroLabel(Integer.toString(i));
             monsterSide.add(character);
+            character.setIcon(new ImageIcon(this.getClass().getResource(Rat.getSprite())));
         }
         add(midLabel,cns);
 
@@ -80,7 +80,6 @@ public class DungeonLabel extends JLabel {
         cns.insets = new Insets(0,0,0,0);
         cns.fill = GridBagConstraints.BOTH;
         botLabel.setBackground(Color.RED);
-        botLabel.setOpaque(true);
         add(botLabel,cns);
 
         JLabel statLabel = new JLabel();
@@ -89,7 +88,6 @@ public class DungeonLabel extends JLabel {
         cns.weighty=2;
         cns.weightx=1;
         cns.fill = GridBagConstraints.BOTH;
-        statLabel.setOpaque(true);
         statLabel.setBackground(Color.YELLOW);
         add(statLabel,cns);
 
