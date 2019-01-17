@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.concurrent.TimeUnit;
 
 public class Gamewindow extends JFrame{
 
@@ -40,7 +41,7 @@ public class Gamewindow extends JFrame{
         window.setLayout(new FlowLayout());
         window.setVisible(true);
         window.setResizable(false);
-
+        boolean running = true;
 
         cityLabel = new JLabel();
         cityLabel.setBounds(0,0, 800,600);
@@ -74,6 +75,19 @@ public class Gamewindow extends JFrame{
 
         window.add(cityLabel);
         cityLabel.add(iconLabel);
+        while(running){
+            window.repaint();
+            window.revalidate();
+
+            /*
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e)  {
+                Thread.currentThread().interrupt();
+                System.out.println("Thread interrupted "+e);
+            }
+*/
+        }
         window.setVisible(true);
 
 

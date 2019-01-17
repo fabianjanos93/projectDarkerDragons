@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.concurrent.TimeUnit;
 
 import static objects.main.gui.Gamewindow.dungeon;
 
@@ -21,6 +22,7 @@ public class DungeonLabel extends JLabel {
     Dungeon currentAdventure;
     Fight ratFight;
     GameCharacter spelltarget;
+    static boolean opaque = false;
 
 
     public DungeonLabel(Dungeon advenutre, Fight ratFight){
@@ -33,6 +35,7 @@ public class DungeonLabel extends JLabel {
     public void init(Dungeon adventure, Fight ratFight){
 
         this.currentAdventure = adventure;
+
 
         setLayout(new GridBagLayout());
         setVisible(true);
@@ -86,7 +89,14 @@ public class DungeonLabel extends JLabel {
                 character.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
+                        if (!opaque){
                          spelltarget = rat;
+                         character.setOpaque(true);
+                         opaque = true;}
+                         else if (opaque){
+                             character.setOpaque(false);
+                             opaque =false;
+                         }
                     }
                 });
             }
@@ -142,6 +152,17 @@ public class DungeonLabel extends JLabel {
         statLabel.setBackground(Color.YELLOW);
         add(statLabel,cns);
 
+
+        JLabel animation = new JLabel();
+        cns.gridx=0;
+        cns.gridy=1;
+        cns.weighty=3;
+        cns.weightx=10;
+        cns.insets = new Insets(3,15,3,15);
+        cns.fill = GridBagConstraints.BOTH;
+        cns.gridwidth=2;
+        animation.setIcon(new ImageIcon(this.getClass().getResource("/Testimage/animation4.png")));
+
         System.out.println(ratFight.getActiveCharacter());
 
         skill1.addMouseListener(new MouseListener() {
@@ -151,17 +172,21 @@ public class DungeonLabel extends JLabel {
                 System.out.println(spelltarget.getHp());
                 System.out.println(ratFight.getActiveCharacter());
 
+
             }
 
 
             @Override
             public void mousePressed(MouseEvent e) {
-
+                animation.setBackground(Color.RED);
+                remove(midLabel);
+                add(animation, cns);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                remove(animation);
+                add(midLabel, cns);
             }
 
             @Override
