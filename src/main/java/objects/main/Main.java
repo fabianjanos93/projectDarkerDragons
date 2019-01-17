@@ -1,5 +1,6 @@
 package objects.main;
 
+import objects.main.gui.Gamewindow;
 import objects.main.gui.Mainwindow;
 
 import javax.swing.*;
@@ -17,12 +18,6 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("jej");
-
-        EventQueue.invokeLater(()->{
-            Mainwindow mainScreen = new Mainwindow();
-            mainScreen.setVisible(true);
-        });
 
         init();
         Skill[] knightSkills = new Skill[4];
@@ -30,6 +25,9 @@ public class Main {
         GameCharacter[] party = new GameCharacter[4];
         party[1] = new Knight(1,knightSkills);
         Dungeon actualDungeon = new Dungeon(party);
+
+
+        Gamewindow windowForTheGame = new Gamewindow();
     }
 
     public static void init(){

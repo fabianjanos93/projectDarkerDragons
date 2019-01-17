@@ -6,7 +6,6 @@ import objects.skill.Skill;
 import java.util.ArrayList;
 
 public class Rat extends GameCharacter {
-
     public Rat(int level, Skill[] skills) {
         super(level, skills);
         this.hp = 6 + level;

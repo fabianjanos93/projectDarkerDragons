@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import static objects.main.gui.Gamewindow.dungeon;
+
 public class DungeonLabel extends JLabel {
 
     public DungeonLabel(){
@@ -33,7 +35,7 @@ public class DungeonLabel extends JLabel {
 
 
         setBounds(0,0, 800,600);
-        setIcon(Gamewindow.dungeonIcon);
+        setIcon(new ImageIcon(this.getClass().getResource(dungeon)));
         setLayout(new GridLayout(3,0));
         add(skillPanel1);
         add(skillPanel2);
