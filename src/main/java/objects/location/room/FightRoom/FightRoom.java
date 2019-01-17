@@ -1,6 +1,7 @@
 package objects.location.room.FightRoom;
 
 import objects.character.GameCharacter;
+import objects.event.Fight;
 import objects.location.room.Room;
 
 public class FightRoom extends Room {
@@ -13,5 +14,8 @@ public class FightRoom extends Room {
         this.enemyParty = enemyPart;
     }
 
-
+    public Fight fight(GameCharacter[] playerParty){
+         setFight(new Fight(playerParty,enemyParty));
+         return fight;
+    }
 }
