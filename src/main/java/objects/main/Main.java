@@ -1,18 +1,17 @@
 package objects.main;
 
-import objects.main.gui.Mainwindow;
+import objects.main.gui.Gamewindow;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("jej");
-
-        EventQueue.invokeLater(()->{
-            Mainwindow mainScreen = new Mainwindow();
-            mainScreen.setVisible(true);
-        });
+        Gamewindow gamewindow = new Gamewindow();
 
     }
+
+
 }
