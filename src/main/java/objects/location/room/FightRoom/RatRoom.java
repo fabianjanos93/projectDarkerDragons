@@ -2,6 +2,7 @@ package objects.location.room.FightRoom;
 
 import objects.character.GameCharacter;
 import objects.character.enemy.Rat;
+import objects.event.Fight;
 import objects.skill.Skill;
 
 import java.util.ArrayList;
@@ -17,5 +18,7 @@ public class RatRoom extends FightRoom {
         enemyParty[2] = new Rat(1, ratSkills);
 
         this.enemyParty = enemyParty;
+
+
     }
 }

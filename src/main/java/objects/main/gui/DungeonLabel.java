@@ -1,25 +1,38 @@
 package objects.main.gui;
 
+import objects.Dungeon;
+import objects.character.GameCharacter;
 import objects.character.enemy.Rat;
 import objects.character.playableCharacter.Knight;
+import objects.event.Fight;
+import objects.location.room.FightRoom.FightRoom;
+import objects.skill.playableCharacterSkill.Strike;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import static objects.main.gui.Gamewindow.dungeon;
 
 public class DungeonLabel extends JLabel {
 
+    Dungeon currentAdventure;
+    Fight ratFight;
+    GameCharacter spelltarget;
 
-    public DungeonLabel(){
-        init();
+
+    public DungeonLabel(Dungeon advenutre, Fight ratFight){
+        init(advenutre, ratFight);
     }
 
 
 
 
-    public void init(){
+    public void init(Dungeon adventure, Fight ratFight){
+
+        this.currentAdventure = adventure;
 
         setLayout(new GridBagLayout());
         setVisible(true);
@@ -55,23 +68,44 @@ public class DungeonLabel extends JLabel {
         midLabel.add(heroSide);
         midLabel.add(monsterSide);
 
-       for (int i =0; i<4; i++){
-           JLabel character = new HeroLabel(Integer.toString(i));
-           character.setIcon(new ImageIcon(this.getClass().getResource(Knight.getSpirte())));
+       for (GameCharacter hero : currentAdventure.getParty()){
+           JLabel character = new HeroLabel();
            heroSide.add(character);
+           if (hero != null) {
+               character.setIcon(new ImageIcon(this.getClass().getResource(Knight.getSpirte())));
+               spelltarget = hero;
+           }
        }
         add(midLabel,cns);
 
-        for (int i =0; i<4; i++){
-            JLabel character = new HeroLabel(Integer.toString(i));
+        for (GameCharacter rat : ((FightRoom)currentAdventure.getActualRoom()).getEnemyParty()) {
+            JLabel character = new HeroLabel();
             monsterSide.add(character);
-            character.setIcon(new ImageIcon(this.getClass().getResource(Rat.getSprite())));
+            if (rat != null) {
+                character.setIcon(new ImageIcon(this.getClass().getResource(rat.getSprite())));
+                character.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                         spelltarget = rat;
+                    }
+                });
+            }
         }
         add(midLabel,cns);
 
 
 
         JLabel botLabel = new JLabel();
+        JButton skill1 = new JButton();
+        skill1.setPreferredSize(new Dimension(50,50));
+        skill1.setIcon(new ImageIcon(this.getClass().getResource(Strike.strike)));
+        JButton skill2 = new JButton();
+        skill2.setPreferredSize(new Dimension(50,50));
+        JButton skill3 = new JButton();
+        skill3.setPreferredSize(new Dimension(50,50));
+        JButton skill4 = new JButton();
+        skill4.setPreferredSize(new Dimension(50,50));
+
         cns.gridx=0;
         cns.gridy=2;
         cns.weighty=2;
@@ -80,6 +114,23 @@ public class DungeonLabel extends JLabel {
         cns.insets = new Insets(0,0,0,0);
         cns.fill = GridBagConstraints.BOTH;
         botLabel.setBackground(Color.RED);
+        botLabel.setLayout(new GridBagLayout());
+        GridBagConstraints bcns = new GridBagConstraints();
+        bcns.gridx=0;
+        bcns.gridy=0;
+        bcns.weighty=1;
+        bcns.weightx=1;
+        bcns.insets= new Insets(15,15,15,15);
+        botLabel.add(skill1, bcns);
+        bcns.gridx=1;
+        bcns.gridy=0;
+        botLabel.add(skill2,bcns);
+        bcns.gridx=2;
+        bcns.gridy=0;
+        botLabel.add(skill3,bcns);
+        bcns.gridx=3;
+        bcns.gridy=0;
+        botLabel.add(skill4, bcns);
         add(botLabel,cns);
 
         JLabel statLabel = new JLabel();
@@ -90,6 +141,39 @@ public class DungeonLabel extends JLabel {
         cns.fill = GridBagConstraints.BOTH;
         statLabel.setBackground(Color.YELLOW);
         add(statLabel,cns);
+
+        System.out.println(ratFight.getActiveCharacter());
+
+        skill1.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ratFight.nextTurn(1,spelltarget);
+                System.out.println(spelltarget.getHp());
+                System.out.println(ratFight.getActiveCharacter());
+
+            }
+
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
 /*
         JButton dungeonButton = new JButton("Strike");

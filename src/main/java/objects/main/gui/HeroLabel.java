@@ -10,12 +10,11 @@ public class HeroLabel extends JLabel {
     private String i;
 
 
-    public HeroLabel(String i){
-        this.i = i;
-        init(i);
+    public HeroLabel(){
+        init();
     }
 
-    public void init(String number){
+    public void init(){
         setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
         setBackground(Color.YELLOW);
 

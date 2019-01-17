@@ -1,5 +1,11 @@
 package objects.main.gui;
 
+import objects.Dungeon;
+import objects.character.GameCharacter;
+import objects.character.playableCharacter.Knight;
+import objects.event.Fight;
+import objects.skill.Skill;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -35,7 +41,6 @@ public class Gamewindow extends JFrame{
         window.setVisible(true);
         window.setResizable(false);
 
-        JLabel dungeonLabel = new DungeonLabel();
 
         cityLabel = new JLabel();
         cityLabel.setBounds(0,0, 800,600);
@@ -49,6 +54,14 @@ public class Gamewindow extends JFrame{
         iconLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                Skill[] knightSkills = new Skill[4];
+                knightSkills[1] = Skill.getSkillByName("Strike");
+                GameCharacter[] party = new GameCharacter[4];
+                Knight hero = new Knight(1,knightSkills);
+                party[1] = hero;
+                Dungeon adventure = new Dungeon(party);
+                Fight ratFight = adventure.startFight();
+                JLabel dungeonLabel = new DungeonLabel(adventure, ratFight);
                 window.remove(cityLabel);
                 window.add(dungeonLabel);
                 dungeonLabel.setVisible(true);

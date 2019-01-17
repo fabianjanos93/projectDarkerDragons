@@ -18,4 +18,8 @@ public class FightRoom extends Room {
          setFight(new Fight(playerParty,enemyParty));
          return fight;
     }
+
+    public GameCharacter[] getEnemyParty() {
+        return enemyParty;
+    }
 }

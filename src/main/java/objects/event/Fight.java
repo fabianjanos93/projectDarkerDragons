@@ -25,10 +25,11 @@ public class Fight {
     public GameCharacter nextTurn(int skillSlot, GameCharacter target){
         GameCharacter activeCharacter = (turnSequence.get(activeCharacterPointer));
         Skill chosenSkill = activeCharacter.getSkill(skillSlot);
+        activeCharacterPointer++;
         if (chosenSkill instanceof DamageSkill) {
             target.takeDamage(((DamageSkill) chosenSkill).attack(activeCharacter));
         }
-        if (activeCharacterPointer<turnSequence.size())
+        if (activeCharacterPointer>turnSequence.size())
             activeCharacterPointer = 0;
         else
             activeCharacterPointer++;
@@ -40,10 +41,12 @@ public class Fight {
             if(party[i] != null) {
                 Random rand = new Random();
                 party[i].setInitiative(rand.nextInt(20));
+            } else {
+                continue;
             }
             int j = 0;
             while(j < turnSequence.size()) {
-                if(party[i].getInitiative() > party[j].getInitiative()) {
+                if(party[i].getInitiative() > turnSequence.get(j).getInitiative()) {
                     turnSequence.add(j,party[i]);
                     break;
                 }
@@ -65,5 +68,9 @@ public class Fight {
 
     public boolean isFightEnded() {
         return partySize(playerParty) == 0 || partySize(enemyParty) == 0;
+    }
+
+    public GameCharacter getActiveCharacter(){
+        return turnSequence.get(activeCharacterPointer);
     }
 }

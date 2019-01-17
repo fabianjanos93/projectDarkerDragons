@@ -19,11 +19,6 @@ public class Main {
     public static void main(String[] args) {
 
         init();
-        Skill[] knightSkills = new Skill[4];
-        knightSkills[1] = Skill.getSkillByName("Bite");
-        GameCharacter[] party = new GameCharacter[4];
-        party[1] = new Knight(1,knightSkills);
-        Dungeon actualDungeon = new Dungeon(party);
 
 
         Gamewindow windowForTheGame = new Gamewindow();

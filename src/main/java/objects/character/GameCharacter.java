@@ -13,6 +13,11 @@ public abstract class GameCharacter {
     protected int armor;
     protected int physicalDmg;
     protected int initiative;
+    protected String sprite;
+
+    public  String getSprite() {
+        return sprite;
+    }
 
     public int getInitiative() {
         return initiative;
@@ -25,6 +30,8 @@ public abstract class GameCharacter {
     public Skill[] skills;
 
     public GameCharacter(int level, Skill[] skills) {
+        this.level = level;
+        this.skills= skills;
     }
 
     public int getHp() {
