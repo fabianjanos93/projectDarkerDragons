@@ -1,16 +1,16 @@
 package objects.character.playableCharacter;
 
-import objects.character.Character;
+import objects.character.GameCharacter;
 import objects.skill.Skill;
-import objects.skill.enemySkill.Bite;
-import objects.skill.playableCharacterSkill.Strike;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
-public class Knight extends Character {
-    public Knight(int level, ArrayList<Skill> skills) {
+public class Knight extends GameCharacter {
+    public Knight(int level, Skill[] skills) {
         super(level, skills);
+        this.hp = 10 + 2*level;
+        this.armor = 3 + level/3;
+        this.physicalDmg = 4 + level;
     }
 
     private static ArrayList<Skill> possibleSkills = new ArrayList<Skill>();

@@ -8,17 +8,17 @@ import java.awt.event.MouseListener;
 
 public class Gamewindow extends JFrame{
 
-    public static final String city = "/home/bleczki/Desktop/OOP/projectDarkerDragons/src/main/resources/Testimage/hamlet.jpg";
-    public static final String dungeon = "/home/bleczki/Desktop/OOP/projectDarkerDragons/src/main/resources/Testimage/dungeon.jpg";
-    public static final String dIcon = "/home/bleczki/Desktop/OOP/projectDarkerDragons/src/main/resources/Testimage/dicon.png";
+    public static final String city = "/Testimage/hamlet.jpg";
+    public static final String dungeon = "/Testimage/dungeon.jpg";
+    public static final String dIcon = "/Testimage/dicon.png";
 
     private JFrame window;
     private JPanel mainPanel, skillPanel;
     private JLabel titleNameLabel, cityLabel, iconLabel, skillLabel;
     private JButton dungeonButton;
-    private ImageIcon cityIcon = new ImageIcon(city);
-    public static final ImageIcon dungeonIcon = new ImageIcon(dungeon);
-    public static final ImageIcon goIcon = new ImageIcon(dIcon);
+    private ImageIcon cityIcon = new ImageIcon(this.getClass().getResource(city));
+    //public ImageIcon dungeonIcon = );
+    public ImageIcon goIcon = new ImageIcon(this.getClass().getResource(dIcon));
 
 
     public Gamewindow(){

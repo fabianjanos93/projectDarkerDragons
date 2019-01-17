@@ -1,7 +1,7 @@
 package objects.skill;
 
-import objects.character.Character;
+import objects.character.GameCharacter;
 
 public interface DamageSkill {
-    public int attack(Character attacker);
+    public int attack(GameCharacter attacker);
 }
